@@ -1,0 +1,73 @@
+{
+  "name": "star-wars",
+  "version": "1.0.0",
+  "description": "Star wars characters React application",
+  "author": "bari.badamshin@gmail.com",
+  "private": true,
+  "keywords": [
+    "react",
+    "redux",
+    "immer",
+    "rxjs",
+    "redux-observable",
+    "webpack",
+    "babel",
+    "hmr",
+    "eslint",
+    "css modules",
+    "typescript"
+  ],
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "start": "npm run clean && webpack-dev-server --progress",
+    "codestyle": "eslint --ext .js,.jsx,.ts,.tsx ./",
+    "build": "npm run clean && NODE_ENV=production webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baribadamshin/star-wars.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baribadamshin/star-wars/issues"
+  },
+  "homepage": "https://github.com/baribadamshin/star-wars#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^10.2.4",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-import-resolver-webpack": "^0.13.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "file-loader": "^6.2.0",
+    "gh-pages": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "style-loader": "^3.3.1",
+    "typescript": "^4.6.4",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
+    "webpack-manifest-plugin": "^5.0.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@hot-loader/react-dom": "^17.0.2",
+    "core-js": "^3.22.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-hot-loader": "^4.13.0"
+  }
+}
