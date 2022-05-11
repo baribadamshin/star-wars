@@ -5,6 +5,8 @@ const {merge} = require('webpack-merge');
 const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const {description} = require('./package.json');
+
 const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
 
@@ -16,7 +18,7 @@ module.exports = () => {
         mode,
         devtool: false,
         bail: true,
-        entry: src,
+        entry: path.join(src, 'client'),
         output: {
             path: dist,
             publicPath: '',
@@ -25,7 +27,6 @@ module.exports = () => {
         resolve: {
             alias: {
                 '~': src,
-                // 'react-dom': '@hot-loader/react-dom',
             },
             extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
         },
@@ -53,13 +54,38 @@ module.exports = () => {
             }, {
                 test: /\.(png|jpe?g|gif)$/i,
                 loader: 'file-loader',
+            }, {
+                test: /\.css$/i,
+                use: [
+                    {
+                        loader: isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: !isProduction,
+                            modules: true,
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: !isProduction,
+                        },
+                    },
+                ],
             }],
         },
 
         plugins: [
             new HtmlWebpackPlugin({
                 template: path.join(src, 'index.html'),
+                title: description,
+                minify: isProduction,
+                inject: 'body',
                 favicon: path.join(src, 'assets', 'favicon.png'),
+                publicPath: isProduction ? '/star-wars/' : 'auto',
             }),
         ],
     };
@@ -69,6 +95,9 @@ module.exports = () => {
             output: {
                 filename: '[contenthash].js',
                 chunkFilename: '[chunkhash].js',
+            },
+            optimization: {
+                minimize: true,
             },
             plugins: [
                 new MiniCssExtractPlugin({
@@ -111,8 +140,5 @@ module.exports = () => {
             ],
         },
         devtool: 'inline-cheap-module-source-map',
-        output: {
-            publicPath: `//${devServer.host}:${devServer.port}/`,
-        },
     });
 };

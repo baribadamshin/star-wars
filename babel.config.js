@@ -15,7 +15,9 @@ module.exports = api => {
                 bugfixes: true,
                 useBuiltIns: 'entry',
             }],
-            '@babel/react',
+            ['@babel/react', {
+                runtime: 'automatic',
+            }],
             '@babel/typescript',
         ],
     };

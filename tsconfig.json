@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "esnext",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
@@ -8,7 +9,7 @@
         "./src/*"
       ]
     },
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -17,7 +18,5 @@
     "stripInternal": true,
     "skipLibCheck": true,
     "incremental": true,
-
-    "jsx": "react"
   },
 }
