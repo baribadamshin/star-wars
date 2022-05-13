@@ -1,7 +1,7 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import {createEpicMiddleware} from 'redux-observable';
 import {createRouterMiddleware, createRouterReducer} from '@lagunovsky/redux-react-router';
-import {createBrowserHistory} from 'history';
+import {createHashHistory} from 'history';
 
 import api from '~/api';
 
@@ -9,7 +9,7 @@ import collections from './collections';
 import widgets from './widgets';
 import epics from './epics';
 
-export const browserHistory = createBrowserHistory();
+export const browserHistory = createHashHistory();
 
 const reducer = combineReducers({
     collections,
