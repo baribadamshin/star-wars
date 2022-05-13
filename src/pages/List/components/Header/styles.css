@@ -1,0 +1,10 @@
+.root
+{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.search
+{
+    width: 50%;
+}

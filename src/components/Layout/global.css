@@ -1,0 +1,36 @@
+
+html
+{
+    height: 100%;
+}
+
+body
+{
+    min-width: 1024px;
+    min-height: 100%;
+
+    background: white;
+}
+
+#root
+{
+    display: flex;
+
+    min-height: 100vh;
+}
+
+body,
+select,
+textarea,
+input,
+button
+{
+    color: black;
+
+    font: .9em/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+i
+{
+    font-style: normal;
+}

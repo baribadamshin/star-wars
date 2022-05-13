@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    },
+    "forceConsistentCasingInFileNames": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "incremental": true,
+  },
+}
