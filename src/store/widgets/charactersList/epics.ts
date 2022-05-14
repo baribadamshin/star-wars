@@ -2,7 +2,7 @@ import {combineEpics, ofType, Epic} from 'redux-observable';
 import {equals} from 'ramda';
 import {of} from 'rxjs';
 import {
-    map, filter, switchMap, distinctUntilChanged, catchError, skip, tap,
+    map, filter, switchMap, distinctUntilChanged, catchError, skip,
 } from 'rxjs/operators';
 
 import type {Dependencies} from '~/store/epics';

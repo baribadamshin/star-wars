@@ -7,8 +7,8 @@ import store, {browserHistory} from '~/store';
 import {getRouterWidget} from '~/store/widgets/router/selectors';
 import Layout from '~/components/Layout';
 import ROUTES from '~/constants/routing';
-import List from '~/pages/list';
-import Detail from '~/pages/details';
+import List from '~/pages/List';
+import Detail from '~/pages/Details';
 
 const App = () => (
     <Layout>
