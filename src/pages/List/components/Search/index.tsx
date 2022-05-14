@@ -20,7 +20,7 @@ const Search: FunctionComponent = () => {
 
     useEffect(() => {
         query$
-            .pipe(debounceTime(300))
+            .pipe(debounceTime(400))
             .subscribe(query => {
                 if (query.length) {
                     dispatch(push(`${ROUTES.home}?query=${query}`));

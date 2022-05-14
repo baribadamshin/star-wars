@@ -14,13 +14,8 @@ export const getIsCharacterListHasNextPage = (state: State) => getCharacterListW
 export const getCharacterItems = (state: State) => getCharacterListWidget(state).items;
 
 export const getIsCharacterListAbleToFetch = createSelector(
-    [getCharacterListCurrentPage, getCurrentRouteName, getIsCharacterListLoading],
-    (currentPage, currentRouteName, isLoading) => currentRouteName === 'home' && !isLoading,
-);
-
-export const getIsCharacterListFreshLoading = createSelector(
-    [getCharacterListCurrentPage, getIsCharacterListLoading, getCharacterItems],
-    (currentPage, isLoading, items) => items.length === 0 && isLoading,
+    getCurrentRouteName,
+    currentRouteName => currentRouteName === 'home',
 );
 
 export const getCharacterListQueryString = createSelector(

@@ -1,25 +1,31 @@
 import {combineEpics, ofType, Epic} from 'redux-observable';
+import {equals} from 'ramda';
 import {of} from 'rxjs';
 import {
-    map, filter, switchMap, distinctUntilChanged, catchError, skip,
+    map, filter, switchMap, distinctUntilChanged, catchError, skip, tap,
 } from 'rxjs/operators';
 
 import type {Dependencies} from '~/store/epics';
-import {
-    fetch, fetchFulfilled, fetchFailed, reset,
-} from '~/store/widgets/charactersList';
+import type {FetchParams} from '~/store/widgets/charactersList';
+import {fetchFulfilled, fetchFailed, reset} from '~/store/widgets/charactersList';
 import {
     getIsCharacterListAbleToFetch,
     getCharacterListRequestParams,
     getCharacterListQueryString,
 } from '~/store/widgets/charactersList/selectors';
-import {fetchFulfilled as fetchFulfilledCharacters} from '~/store/collections/characters';
+import {save} from '~/store/collections/characters';
 
-const fetchCharactersList: Epic = (action$, state$) => state$.pipe(
+const fetchCharactersList: Epic = (action$, state$, {api}: Dependencies) => state$.pipe(
     filter(getIsCharacterListAbleToFetch),
     map(getCharacterListRequestParams),
-    distinctUntilChanged(),
-    map(fetch),
+    distinctUntilChanged<FetchParams>(equals),
+    switchMap(params => api.characters.getList(params).pipe(
+        map(result => fetchFulfilled({
+            ...params,
+            ...result,
+        })),
+        catchError(() => of(fetchFailed())),
+    )),
 );
 
 const resetCharactersList: Epic = (action$, state$) => state$.pipe(
@@ -29,25 +35,13 @@ const resetCharactersList: Epic = (action$, state$) => state$.pipe(
     map(() => reset()),
 );
 
-const charactersListFetching: Epic = (action$, state$, {api}: Dependencies) => action$.pipe(
-    ofType(fetch),
-    switchMap(({payload}) => api.characters.getList(payload).pipe(
-        map(result => fetchFulfilled({
-            ...payload,
-            ...result,
-        })),
-        catchError(() => of(fetchFailed())),
-    )),
-);
-
 const storeCharactersCollection: Epic = action$ => action$.pipe(
     ofType(fetchFulfilled),
-    map(({payload}) => fetchFulfilledCharacters(payload.entities.characters)),
+    map(({payload}) => save(payload.entities.characters)),
 );
 
 export default combineEpics(
     resetCharactersList,
-    charactersListFetching,
     fetchCharactersList,
     storeCharactersCollection,
 );
