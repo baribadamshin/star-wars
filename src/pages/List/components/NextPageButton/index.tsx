@@ -1,4 +1,3 @@
-import type {FunctionComponent} from 'react';
 import {useCallback} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import Button from '@mui/material/Button';

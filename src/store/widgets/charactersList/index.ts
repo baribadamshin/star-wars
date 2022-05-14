@@ -12,7 +12,7 @@ type State = {
 }
 
 const initialState:State = {
-    page: 0,
+    page: 1,
     loading: false,
     hasNextPage: false,
     error: null,
@@ -20,20 +20,25 @@ const initialState:State = {
 
 };
 
-type FetchPayload = {
-    page: number
+export type FetchParams = {
+    page: number;
+    search?: string;
 };
 
-type FetchFulfilledPayload = FetchPayload & CharactersListNormalizedResult;
+type FetchFulfilledPayload = FetchParams & CharactersListNormalizedResult;
 
 export const charactersList = createSlice({
     name: 'charactersList',
     initialState,
     reducers: {
-        fetch: (state, {payload}: PayloadAction<FetchPayload>) => {
+        fetch: (state, {payload}: PayloadAction<FetchParams>) => {
             state.loading = true;
             state.page = payload.page;
             state.error = null;
+        },
+        reset: state => {
+            state.page = 1;
+            state.items = [];
         },
         fetchFulfilled: (state, {payload}: PayloadAction<FetchFulfilledPayload>) => {
             state.loading = false;
@@ -47,6 +52,8 @@ export const charactersList = createSlice({
     },
 });
 
-export const {fetch, fetchFulfilled, fetchFailed} = charactersList.actions;
+export const {
+    fetch, fetchFulfilled, fetchFailed, reset,
+} = charactersList.actions;
 
 export default charactersList.reducer;

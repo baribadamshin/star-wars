@@ -7,9 +7,11 @@ import get from '~/utils/swapi';
 import type {CharactersListNormalizedResult, CharactersListResult} from './types';
 import characterEntity from './schema';
 
-const getList = (page: number): Observable<CharactersListNormalizedResult> => get<CharactersListResult>({
+type Params = {page: number, search?: string};
+
+const getList = (params: Params): Observable<CharactersListNormalizedResult> => get<CharactersListResult>({
     url: '/people/',
-    params: {page},
+    params,
 }).pipe(map((data) => normalize(data, {results: [characterEntity]})));
 
 export default {

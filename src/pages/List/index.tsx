@@ -5,7 +5,7 @@ import Skeleton from '@mui/material/Skeleton';
 import {getCharacterItems, getIsCharacterListFreshLoading} from '~/store/widgets/charactersList/selectors';
 
 import NextPageButton from './components/NextPageButton';
-import Header from './components/Header';
+import Search from './components/Search';
 import Character from './components/Character';
 import css from './styles.css';
 
@@ -16,7 +16,7 @@ const List = () => {
     if (isFreshLoading) {
         return (
             <>
-                <Header />
+                <Search />
                 <Grid container>
                     <Skeleton className={css.skeleton} variant="rectangular" />
                     <Skeleton className={css.skeleton} variant="rectangular" />
@@ -29,7 +29,7 @@ const List = () => {
 
     return (
         <>
-            <Header />
+            <Search />
             <Grid container>
                 {items.map(id => (
                     <Character className={css.card} key={id} id={id} />
