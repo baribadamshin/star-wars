@@ -8,7 +8,8 @@ type State = {
     loading: boolean,
     hasNextPage: boolean,
     error: null | boolean,
-    items: CharacterId[]
+    items: CharacterId[],
+    total: number;
 }
 
 const initialState:State = {
@@ -17,6 +18,7 @@ const initialState:State = {
     hasNextPage: false,
     error: null,
     items: [],
+    total: 0,
 
 };
 
@@ -51,6 +53,7 @@ export const charactersList = createSlice({
             state.loading = false;
             state.hasNextPage = Boolean(payload.result.next);
             state.items = state.items.concat(payload.result.results);
+            state.total = payload.result.count;
         },
         fetchFailed: state => {
             state.loading = false;

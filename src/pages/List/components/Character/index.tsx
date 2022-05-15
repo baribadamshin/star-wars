@@ -1,5 +1,4 @@
 import {useMemo, useCallback, type FunctionComponent} from 'react';
-import {generatePath} from 'react-router';
 import {push} from '@lagunovsky/redux-react-router';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '@mui/material/Button';
@@ -8,11 +7,9 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 
-import {
-    makeGetCharactersById,
-} from '~/store/collections/characters/selectors';
 import type {CharacterId} from '~/entities/characters';
-import ROUTES from '~/constants/routing';
+import {makeGetCharactersById} from '~/store/collections/characters/selectors';
+import buildRoute from '~/utils/buildRoute';
 
 type Props = {
     id: CharacterId;
@@ -23,7 +20,7 @@ const Character: FunctionComponent<Props> = ({id, className}) => {
     const dispatch = useDispatch();
 
     const getCharacterById = useMemo(() => makeGetCharactersById(id), [id]);
-    const characterDetailPage = useMemo(() => generatePath(ROUTES.details, {id}), [id]);
+    const characterDetailPage = useMemo(() => buildRoute('details', {id}), [id]);
 
     const character = useSelector(getCharacterById);
 

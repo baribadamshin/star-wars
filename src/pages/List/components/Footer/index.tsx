@@ -10,6 +10,8 @@ import {
 } from '~/store/widgets/charactersList/selectors';
 import {nextPage} from '~/store/widgets/charactersList';
 
+import css from './styles.css';
+
 const NextPageButton = () => {
     const isLoading = useSelector(getIsCharacterListLoading);
     const hasNextPage = useSelector(getIsCharacterListHasNextPage);
@@ -24,11 +26,13 @@ const NextPageButton = () => {
         return null;
     }
 
-    if (isLoading) {
-        return <Spinner />;
-    }
-
-    return <Button variant="outlined" onClick={loadNextPage}>Load next page</Button>;
+    return (
+        <footer className={css.root}>
+            {isLoading
+                ? <Spinner />
+                : <Button variant="outlined" onClick={loadNextPage}>Load next page</Button>}
+        </footer>
+    );
 };
 
 export default NextPageButton;

@@ -1,12 +1,11 @@
-import type {FunctionComponent, ChangeEvent} from 'react';
-import {useCallback, useState, useEffect} from 'react';
+import {useCallback, useState, useEffect, type FunctionComponent, type ChangeEvent} from 'react';
 import {useDispatch} from 'react-redux';
 import {push} from '@lagunovsky/redux-react-router';
 import {BehaviorSubject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import TextField from '@mui/material/TextField';
 
-import ROUTES from '~/constants/routing';
+import buildRoute from '~/utils/buildRoute';
 
 import css from './styles.css';
 
@@ -22,11 +21,7 @@ const Search: FunctionComponent = () => {
         query$
             .pipe(debounceTime(400))
             .subscribe(query => {
-                if (query.length) {
-                    dispatch(push(`${ROUTES.home}?query=${query}`));
-                } else {
-                    dispatch(push(ROUTES.home));
-                }
+                dispatch(push(buildRoute('home', {}, {query})));
             });
     }, [query$, dispatch]);
 

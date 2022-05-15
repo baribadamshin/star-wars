@@ -1,0 +1,5 @@
+.card
+{
+    margin: 0 25px 35px 0;
+    width: calc(25% - 50px);
+}

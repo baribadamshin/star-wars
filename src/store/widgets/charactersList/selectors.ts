@@ -11,6 +11,7 @@ export const getIsCharacterListLoading = (state: State) => getCharacterListWidge
 export const getCharacterListCurrentPage = (state: State) => getCharacterListWidget(state).page;
 export const getIsCharacterListHasNextPage = (state: State) => getCharacterListWidget(state).hasNextPage;
 export const getCharacterItems = (state: State) => getCharacterListWidget(state).items;
+export const getIsEmptyResult = (state: State) => getCharacterListWidget(state).total === 0;
 
 export const getIsCharacterListAbleToFetch = createSelector(
     getCurrentRouteName,

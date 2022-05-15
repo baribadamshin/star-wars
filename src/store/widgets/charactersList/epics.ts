@@ -41,6 +41,7 @@ const resetCharactersList: Epic = (action$, state$) => state$.pipe(
 
 const storeCharactersCollection: Epic = action$ => action$.pipe(
     ofType(fetchFulfilled),
+    filter(({payload}) => payload.result.count > 0),
     map(({payload}) => store(payload.entities.characters)),
 );
 
