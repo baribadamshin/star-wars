@@ -1,6 +1,7 @@
 import {useSelector} from 'react-redux';
 import Grid from '@mui/material/Grid';
 import Spinner from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 
 import {getIsEmptyResult, getCharacterItems, getIsCharacterListLoading} from '~/store/widgets/charactersList/selectors';
 
@@ -14,7 +15,11 @@ const Items = () => {
 
     if (isEmpty) {
         if (!isLoading) {
-            return <div>NOT FOUND</div>;
+            return (
+                <Typography variant="overline" display="block" gutterBottom>
+                    Characters with this name not found
+                </Typography>
+            );
         }
 
         if (isLoading) {
