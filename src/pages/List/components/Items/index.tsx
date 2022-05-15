@@ -14,17 +14,15 @@ const Items = () => {
     const isLoading = useSelector(getIsCharacterListLoading);
 
     if (isEmpty) {
-        if (!isLoading) {
-            return (
-                <Typography variant="overline" display="block" gutterBottom>
-                    Characters with this name not found
-                </Typography>
-            );
-        }
-
         if (isLoading) {
             return <Spinner />;
         }
+
+        return (
+            <Typography variant="overline" display="block" gutterBottom>
+                Characters with this name not found
+            </Typography>
+        );
     }
 
     return (

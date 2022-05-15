@@ -48,6 +48,8 @@ export const charactersList = createSlice({
         reset: state => {
             state.page = 1;
             state.items = [];
+            state.total = 0;
+            state.loading = true;
         },
         fetchFulfilled: (state, {payload}: PayloadAction<FetchFulfilledPayload>) => {
             state.loading = false;

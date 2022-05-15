@@ -7,6 +7,7 @@ import {
     getIsCharacterListLoading,
     getCharacterListCurrentPage,
     getIsCharacterListHasNextPage,
+    getIsEmptyResult,
 } from '~/store/widgets/charactersList/selectors';
 import {nextPage} from '~/store/widgets/charactersList';
 
@@ -16,13 +17,14 @@ const NextPageButton = () => {
     const isLoading = useSelector(getIsCharacterListLoading);
     const hasNextPage = useSelector(getIsCharacterListHasNextPage);
     const currentPage = useSelector(getCharacterListCurrentPage);
+    const isEmpty = useSelector(getIsEmptyResult);
     const dispatch = useDispatch();
 
     const loadNextPage = useCallback(() => {
         dispatch(nextPage(currentPage + 1));
     }, [currentPage, dispatch]);
 
-    if (!hasNextPage) {
+    if (!hasNextPage || isEmpty) {
         return null;
     }
 
