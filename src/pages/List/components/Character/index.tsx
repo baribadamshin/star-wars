@@ -1,5 +1,4 @@
-import type {FunctionComponent} from 'react';
-import {useMemo, useCallback} from 'react';
+import {useMemo, useCallback, type FunctionComponent} from 'react';
 import {generatePath} from 'react-router';
 import {push} from '@lagunovsky/redux-react-router';
 import {useDispatch, useSelector} from 'react-redux';

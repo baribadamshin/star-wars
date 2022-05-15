@@ -1,5 +1,4 @@
-import type {Selector} from '@reduxjs/toolkit';
-import {createSelector} from '@reduxjs/toolkit';
+import {createSelector, type Selector} from '@reduxjs/toolkit';
 
 import type {State} from '~/store';
 import {getCurrentRouteName, getQueryParams} from '~/store/widgets/router/selectors';
@@ -20,13 +19,7 @@ export const getIsCharacterListAbleToFetch = createSelector(
 
 export const getCharacterListQueryString = createSelector(
     getQueryParams,
-    ({query}) => {
-        if (!query || Array.isArray(query)) {
-            return undefined;
-        }
-
-        return query;
-    },
+    ({query}) => ((query && !Array.isArray(query)) ? query : undefined),
 );
 
 export const getCharacterListRequestParams: Selector<State, FetchParams> = createSelector(

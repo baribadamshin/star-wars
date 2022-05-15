@@ -35,6 +35,13 @@ export const charactersList = createSlice({
             state.loading = true;
             state.page = payload.page;
             state.error = null;
+
+            if (payload.page === 1) {
+                state.items = [];
+            }
+        },
+        nextPage: (state, {payload}: PayloadAction<number>) => {
+            state.page = payload;
         },
         reset: state => {
             state.page = 1;
@@ -53,7 +60,7 @@ export const charactersList = createSlice({
 });
 
 export const {
-    fetch, fetchFulfilled, fetchFailed, reset,
+    fetch, fetchFulfilled, fetchFailed, reset, nextPage,
 } = charactersList.actions;
 
 export default charactersList.reducer;

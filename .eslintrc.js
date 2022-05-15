@@ -67,6 +67,7 @@ module.exports = {
         'react/jsx-indent-props': [1, 4],
         'react/jsx-uses-vars': [1],
         'react/prop-types': 0,
+        'object-curly-newline': 0,
         'react/require-default-props': 0,
         'react/function-component-definition': [1, {
             unnamedComponents: 'arrow-function',

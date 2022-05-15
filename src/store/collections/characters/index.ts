@@ -8,12 +8,12 @@ export const characters = createSlice({
     name: 'characters',
     initialState,
     reducers: {
-        save: (state, {payload}: PayloadAction<CharacterCollections>) => {
+        store: (state, {payload}: PayloadAction<CharacterCollections>) => {
             Object.assign(state, payload);
         },
     },
 });
 
-export const {save} = characters.actions;
+export const {store} = characters.actions;
 
 export default characters.reducer;

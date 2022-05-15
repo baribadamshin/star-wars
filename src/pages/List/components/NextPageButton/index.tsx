@@ -8,7 +8,7 @@ import {
     getCharacterListCurrentPage,
     getIsCharacterListHasNextPage,
 } from '~/store/widgets/charactersList/selectors';
-import {fetch} from '~/store/widgets/charactersList';
+import {nextPage} from '~/store/widgets/charactersList';
 
 const NextPageButton = () => {
     const isLoading = useSelector(getIsCharacterListLoading);
@@ -17,7 +17,7 @@ const NextPageButton = () => {
     const dispatch = useDispatch();
 
     const loadNextPage = useCallback(() => {
-        dispatch(fetch({page: currentPage + 1}));
+        dispatch(nextPage(currentPage + 1));
     }, [currentPage, dispatch]);
 
     if (!hasNextPage) {

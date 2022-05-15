@@ -1,18 +1,21 @@
-import type {AxiosRequestConfig} from 'axios';
 import type {Observable} from 'rxjs';
-import axios from 'axios';
-import {mergeMap} from 'rxjs/operators';
-import {from, of, throwError} from 'rxjs';
+import queryString from 'query-string';
 
-export default <R>({url, params}: AxiosRequestConfig): Observable<R> => from(axios.get(url!, {
-    baseURL: 'https://swapi.dev/api',
-    params,
-})).pipe(
-    mergeMap(({status, data}) => {
-        if (status === 200) {
-            return of(data);
-        }
+import streamApi from '~/utils/streamApi';
 
-        return throwError(data);
-    }),
-);
+type Params = {
+    url: string;
+    params: Record<string, string | number>,
+}
+
+export default <R>({url, params}: Params): Observable<R> => {
+    const query = queryString.stringify(params);
+
+    let destination = `https://swapi.dev/api${url}`;
+
+    if (query) {
+        destination += `?${query}`;
+    }
+
+    return streamApi(destination);
+};
