@@ -2,7 +2,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {merge} = require('webpack-merge');
-const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const {description} = require('./package.json');
@@ -104,7 +103,6 @@ module.exports = () => {
                     filename: '[contenthash].css',
                     chunkFilename: '[chunkhash].css',
                 }),
-                new WebpackManifestPlugin(),
             ],
         });
     }
