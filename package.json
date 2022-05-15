@@ -18,6 +18,7 @@
     "typescript"
   ],
   "scripts": {
+    "prepare": "husky install",
     "clean": "rm -rf ./dist",
     "start": "npm run clean && webpack-dev-server --progress",
     "codestyle": "eslint --ext .js,.jsx,.ts,.tsx ./",
@@ -42,9 +43,6 @@
     "not op_mini all",
     "not dead"
   ],
-  "resolutions": {
-    "autoprefixer": "10.4.5"
-  },
   "homepage": "https://github.com/baribadamshin/star-wars#readme",
   "devDependencies": {
     "@babel/cli": "^7.17.10",
@@ -70,6 +68,7 @@
     "file-loader": "^6.2.0",
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss-csso": "^6.0.0",
     "postcss-loader": "^6.2.1",
