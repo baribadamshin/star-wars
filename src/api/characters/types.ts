@@ -1,6 +1,6 @@
 import type {NormalizedSchema} from 'normalizr';
 
-import type {Character} from '~/entities/characters';
+import type {Character, CharacterId} from '~/entities/characters';
 
 export type CharacterOriginal = {
     birth_year: string;
@@ -34,3 +34,4 @@ export type CharactersListResult<R = CharacterOriginal> = {
 }
 
 export type CharactersListNormalizedResult = NormalizedSchema<Entities, CharactersListResult<string>>;
+export type CharacterDetailsNormalizedResult = NormalizedSchema<Entities, CharacterId>;

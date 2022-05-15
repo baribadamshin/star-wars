@@ -7,22 +7,23 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 
+import type {State} from '~/store';
 import type {CharacterId} from '~/entities/characters';
-import {makeGetCharactersById} from '~/store/collections/characters/selectors';
+import {makeGetCharacterById} from '~/store/collections/characters/selectors';
 import buildRoute from '~/utils/buildRoute';
 
 type Props = {
     id: CharacterId;
-    className: string;
+    className?: string;
 }
 
 const Character: FunctionComponent<Props> = ({id, className}) => {
     const dispatch = useDispatch();
 
-    const getCharacterById = useMemo(() => makeGetCharactersById(id), [id]);
+    const getCharacterById = useMemo(() => makeGetCharacterById(), []);
     const characterDetailPage = useMemo(() => buildRoute('details', {id}), [id]);
 
-    const character = useSelector(getCharacterById);
+    const character = useSelector((state: State) => getCharacterById(state, id));
 
     const detailsClick = useCallback(() => {
         dispatch(push(characterDetailPage));

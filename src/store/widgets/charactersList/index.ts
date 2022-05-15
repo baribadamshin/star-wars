@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
 
 import type {CharacterId} from '~/entities/characters';
 import type {CharactersListNormalizedResult} from '~/api/characters/types';

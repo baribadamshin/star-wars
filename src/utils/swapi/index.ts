@@ -5,11 +5,11 @@ import streamApi from '~/utils/streamApi';
 
 type Params = {
     url: string;
-    params: Record<string, string | number>,
+    params?: Record<string, string | number>,
 }
 
 export default <R>({url, params}: Params): Observable<R> => {
-    const query = queryString.stringify(params);
+    const query = params ? queryString.stringify(params) : null;
 
     let destination = `https://swapi.dev/api${url}`;
 
