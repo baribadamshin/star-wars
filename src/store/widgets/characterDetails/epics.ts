@@ -1,4 +1,4 @@
-import {combineEpics, ofType, Epic} from 'redux-observable';
+import {combineEpics, Epic} from 'redux-observable';
 import {of} from 'rxjs';
 import {map, filter, distinctUntilChanged, switchMap, catchError} from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ const fetchCharacter: Epic = (action$, state$) => state$.pipe(
 );
 
 const characterFetching: Epic = (action$, state$, {api}: Dependencies) => action$.pipe(
-    ofType(fetch),
+    filter(fetch.match),
     switchMap(({payload}) => api.characters.getById(payload.id).pipe(
         map(result => fetchFulfilled(result)),
         catchError(() => of(fetchFailed())),
@@ -23,7 +23,7 @@ const characterFetching: Epic = (action$, state$, {api}: Dependencies) => action
 );
 
 const storeCharacterInCollection: Epic = action$ => action$.pipe(
-    ofType(fetchFulfilled),
+    filter(fetchFulfilled.match),
     map(({payload}) => store(payload.entities.characters)),
 );
 

@@ -1,4 +1,4 @@
-import {combineEpics, ofType, Epic} from 'redux-observable';
+import {combineEpics, Epic} from 'redux-observable';
 import {equals} from 'ramda';
 import {of} from 'rxjs';
 import {map, filter, switchMap, distinctUntilChanged, catchError, skip, debounceTime} from 'rxjs/operators';
@@ -22,7 +22,7 @@ const fetchCharactersList: Epic = (action$, state$) => state$.pipe(
 );
 
 const charactersListFetching: Epic = (action$, state$, {api}: Dependencies) => action$.pipe(
-    ofType(fetch),
+    filter(fetch.match),
     switchMap(({payload}) => api.characters.getList(payload).pipe(
         map(result => fetchFulfilled({
             ...payload,
@@ -40,7 +40,7 @@ const resetCharactersList: Epic = (action$, state$) => state$.pipe(
 );
 
 const storeCharactersCollection: Epic = action$ => action$.pipe(
-    ofType(fetchFulfilled),
+    filter(fetchFulfilled.match),
     filter(({payload}) => payload.result.count > 0),
     map(({payload}) => store(payload.entities.characters)),
 );
