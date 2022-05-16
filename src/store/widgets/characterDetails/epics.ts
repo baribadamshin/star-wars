@@ -17,7 +17,7 @@ const fetchCharacter: Epic = (action$, state$) => state$.pipe(
 const characterFetching: Epic = (action$, state$, {api}: Dependencies) => action$.pipe(
     filter(fetch.match),
     switchMap(({payload}) => api.characters.getById(payload.id).pipe(
-        map(result => fetchFulfilled(result)),
+        map(fetchFulfilled),
         catchError(() => of(fetchFailed())),
     )),
 );

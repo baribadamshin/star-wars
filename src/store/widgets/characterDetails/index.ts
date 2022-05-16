@@ -11,23 +11,23 @@ const initialState: State = {
     loading: false,
 };
 
-type FetchPayload = {
+type FetchPayload = PayloadAction<{
     id: CharacterId;
-}
+}>
 
 export const characterDetails = createSlice({
     name: 'characterDetails',
     initialState,
     reducers: {
         // eslint-disable-next-line no-unused-vars
-        fetch: (state, payload: PayloadAction<FetchPayload>) => {
+        fetch: (state, payload: FetchPayload) => {
             state.loading = true;
         },
         // eslint-disable-next-line no-unused-vars
         fetchFulfilled: (state, payload: PayloadAction<CharacterDetailsNormalizedResult>) => {
             state.loading = false;
         },
-        fetchFailed: (state) => {
+        fetchFailed: state => {
             state.loading = false;
         },
     },

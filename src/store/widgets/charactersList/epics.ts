@@ -18,7 +18,7 @@ const fetchCharactersList: Epic = (action$, state$) => state$.pipe(
     map(getCharacterListRequestParams),
     distinctUntilChanged<FetchParams>(equals),
     debounceTime(100),
-    map(params => fetch(params)),
+    map(fetch),
 );
 
 const charactersListFetching: Epic = (action$, state$, {api}: Dependencies) => action$.pipe(
