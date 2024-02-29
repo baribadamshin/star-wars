@@ -9,7 +9,7 @@ type Props = {
 
 const Card = ({matrix}: Props) => (
     <>
-        <h2>B2B Bingo Tingo! Эмоциональное лото (не качели)</h2>
+        <h2>B2B Bingo Tingo! Эмоциональное лото</h2>
         <div className={css.card}>
             {matrix.map((row) => row.map((cell) => (
                 <div className={css.cell}>
