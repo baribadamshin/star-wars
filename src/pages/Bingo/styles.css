@@ -1,0 +1,4 @@
+.list > *:nth-child(3n)
+{
+    page-break-after: always;
+}

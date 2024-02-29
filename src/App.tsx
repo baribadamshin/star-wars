@@ -9,6 +9,7 @@ import Layout from '~/components/Layout';
 import ROUTES from '~/constants/routing';
 import List from '~/pages/List';
 import Detail from '~/pages/Details';
+import Bingo from '~/pages/Bingo';
 
 const App = () => (
     <Layout>
@@ -16,6 +17,7 @@ const App = () => (
             <Routes>
                 <Route path={ROUTES.home} element={<List />} />
                 <Route path={ROUTES.details} element={<Detail />} />
+                <Route path={ROUTES.bingo} element={<Bingo />} />
             </Routes>
         </ReduxRouter>
     </Layout>

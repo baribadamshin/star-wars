@@ -1,0 +1,32 @@
+body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+
+.card {
+    padding: 4px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 2px;
+    background: #000;
+    grid-auto-flow: row;
+    margin-bottom: 100px;
+
+}
+
+.cell
+{
+    background: #fff;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 72px;
+}
+
+h2
+{
+    font-size: 30px;
+    font-weight: normal;
+    margin-bottom: 4px;
+}
