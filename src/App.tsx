@@ -10,17 +10,21 @@ import ROUTES from '~/constants/routing';
 import List from '~/pages/List';
 import Detail from '~/pages/Details';
 import Bingo from '~/pages/Bingo';
+import Emoji from '~/pages/Emoji';
 
-const App = () => (
-    <Layout>
-        <ReduxRouter routerSelector={getRouterWidget} store={store} history={browserHistory} enableTimeTravelling>
-            <Routes>
-                <Route path={ROUTES.home} element={<List />} />
-                <Route path={ROUTES.details} element={<Detail />} />
-                <Route path={ROUTES.bingo} element={<Bingo />} />
-            </Routes>
-        </ReduxRouter>
-    </Layout>
-);
+function App() {
+    return (
+        <Layout>
+            <ReduxRouter routerSelector={getRouterWidget} store={store} history={browserHistory} enableTimeTravelling>
+                <Routes>
+                    <Route path={ROUTES.home} element={<List />} />
+                    <Route path={ROUTES.details} element={<Detail />} />
+                    <Route path={ROUTES.bingo} element={<Bingo />} />
+                    <Route path={ROUTES.emoji} element={<Emoji />} />
+                </Routes>
+            </ReduxRouter>
+        </Layout>
+    );
+}
 
 export default hot(App);

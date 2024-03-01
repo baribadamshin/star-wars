@@ -6,8 +6,8 @@ import css from './styles.css';
 const Bingo = () => (
     <div className={css.list}>
         {
-            Ticket.generateStrip().map(matrix => (
-                <Card matrix={matrix} />
+            Ticket.generateStrip().map((matrix, index) => (
+                <Card key={index} matrix={matrix} />
             ))
         }
     </div>

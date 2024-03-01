@@ -1,4 +1,4 @@
-export const EMOJI = [
+export default [
     '🌮',
     '🚘',
     '🐰',
